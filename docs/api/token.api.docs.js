@@ -59,22 +59,6 @@ module.exports = {
      *                         Contains user ID, session ID, device ID, role, and school assignments.
      *                         Use this token in the 'token' header for subsequent API calls.
      *                       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGYxYzhlOGYxYTJhM2M0ZDVlNmY3ODkiLCJzZXNzaW9uSWQiOiJhYmMxMjMiLCJkZXZpY2VJZCI6IjViNzMxMGRjIn0..."
-     *       400:
-     *         description: Bad request - Missing required headers or invalid format
-     *         content:
-     *           application/json:
-     *             schema:
-     *               type: object
-     *               properties:
-     *                 ok:
-     *                   type: boolean
-     *                   example: false
-     *                 code:
-     *                   type: integer
-     *                   example: 400
-     *                 error:
-     *                   type: string
-     *                   example: "Missing required header: longToken"
      *       401:
      *         description: Unauthorized - Invalid or expired long token
      *         content:
@@ -90,7 +74,7 @@ module.exports = {
      *                   example: 401
      *                 error:
      *                   type: string
-     *                   example: "Invalid or expired long token"
+     *                   example: "unauthorized"
      *       500:
      *         description: Internal server error
      *         content:
