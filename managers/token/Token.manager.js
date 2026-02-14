@@ -7,8 +7,8 @@ module.exports = class TokenManager {
 
     constructor({config }){
         this.config              = config;
-        this.longTokenExpiresIn  = '3y';
-        this.shortTokenExpiresIn = '1y';
+        this.longTokenExpiresIn  = '1y';
+        this.shortTokenExpiresIn = '1m';
         this.passwordResetTokenExpiresIn = '1h';
 
         this.httpExposed         = ['v1_createShortToken'];

@@ -8,6 +8,10 @@ A RESTful API for managing schools, classrooms, students, and administrative use
 - View the Database ER Diagram at https://drive.google.com/file/d/1TjFnJx6fD4CTRGQjvq4r4Du16pevLxV1/view?usp=sharing
 - Visit the Github repo at https://github.com/johadi/jimoh-axion-main
 
+## Deployed API Testing
+- Login with a superadmin user with the username: `superadmintest` and password `superadmin123`
+- Use the longToken to call the endpoint https://jimoh-axion-main-production.up.railway.app/api/token/v1_createShortToken . Use the shortToken obtained to access protected endpoints
+
 ## Technology Stack
 
 ### Backend Framework & Runtime
