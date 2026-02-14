@@ -8,16 +8,26 @@ const options = {
         info: {
             title: 'Axion School Management API',
             version: '1.0.0',
-            description: 'A comprehensive school management system API with separate documentation files',
+            description: 'Documentation for school management API',
             contact: {
                 name: 'API Support',
-                email: 'support@axion.com',
+                email: 'jimoh.hadi@gmail.com',
             },
         },
         servers: [
             {
-                url:  config.dotEnv.API_BASE_URL ?? 'http://localhost:5222',
-                description: 'API Base Url',
+                url: (() => {
+                    const baseUrl = config.dotEnv.API_BASE_URL;
+                    if (!baseUrl) {
+                        return 'http://localhost:5111';
+                    }
+                    // If baseUrl doesn't start with http:// or https://, add http://
+                    if (!baseUrl.match(/^https?:\/\//)) {
+                        return `http://${baseUrl}`;
+                    }
+                    return baseUrl;
+                })(),
+                description: 'API Server',
             },
         ],
         components: {
