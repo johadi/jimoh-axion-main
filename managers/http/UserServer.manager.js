@@ -1,6 +1,9 @@
 const http              = require('http');
 const express           = require('express');
 const cors              = require('cors');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerSpec = require('../../docs/swagger');
 const app               = express();
 
 module.exports = class UserServer {
@@ -20,6 +23,8 @@ module.exports = class UserServer {
         app.use(express.json());
         app.use(express.urlencoded({ extended: true}));
         app.use('/static', express.static('public'));
+        // add swagger docs
+        app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
         /** an error handler */
         app.use((err, req, res, next) => {

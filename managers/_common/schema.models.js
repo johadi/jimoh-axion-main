@@ -17,11 +17,6 @@ module.exports = {
         type: 'string',
         length: {min: 8, max: 100},
     },
-    email: {
-        path: 'email',
-        type: 'string',
-        length: {min:3, max: 100},
-    },
     title: {
         path: 'title',
         type: 'string',
@@ -83,11 +78,11 @@ module.exports = {
     },
     email: {
         type: 'String',
+        path: 'email',
         regex: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     },
     number: {
-        type: 'Number',
-        length: {min: 1, max:6},
+        type: 'number',
     },
     arrayOfStrings: {
         type: 'Array',
@@ -97,9 +92,53 @@ module.exports = {
         }
     },
     obj: {
-        type: 'Object',
+        type: 'object',
     },
     bool: {
-        type: 'Boolean',
+        type: 'boolean',
+    },
+    string: {
+        type: 'string',
+    },
+
+    date: {
+        type: 'date',
+    },
+
+    role: {
+        path: 'role',
+        type: 'string',
+        oneOf: ['superadmin', 'admin'],
+    },
+
+    objectId: {
+        type: 'string',
+        custom: 'objectId',
+        customError:'id must be a valid objectId'
+    },
+
+    numberString: {
+        custom: 'numberString',
+    },
+
+    resources: {
+        type: 'array',
+        path: 'resources',
+        items: {
+            type: 'string',
+        }
+    },
+    schoolIds: {
+        path: 'schoolIds',
+        type: 'array',
+        items: {
+            type: 'string',
+            custom: 'objectId',
+        },
+    },
+    enrollmentStatus: {
+        path: 'enrollmentStatus',
+        type: 'string',
+        oneOf: ['enrolled', 'transferred', 'graduated']
     },
 }

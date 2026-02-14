@@ -121,7 +121,7 @@ module.exports = class ApiHandler {
         return result;
     }
 
-     /** a middle for executing admin apis trough HTTP */
+     /** a middle for executing apis trough HTTP */
     async mw(req, res, next){
 
         let method        = req.method.toLowerCase();
@@ -161,13 +161,13 @@ module.exports = class ApiHandler {
             if(result.selfHandleResponse){
                 // do nothing if response handeled
             } else {
-                
                 if(result.errors){
-                    return this.managers.responseDispatcher.dispatch(res, {ok: false, errors: result.errors});
+                    return this.managers.responseDispatcher.dispatch(res, {ok: false, code: result.httpStatusCode, errors: result.errors});
                 } else if(result.error){
-                    return this.managers.responseDispatcher.dispatch(res, {ok: false, message: result.error});
+                    return this.managers.responseDispatcher.dispatch(res, {ok: false, code: result.httpStatusCode, message: result.error});
                 } else {
-                    return this.managers.responseDispatcher.dispatch(res, {ok:true, data: result});
+                    const { httpStatusCode, ...rest} = result || {};
+                    return this.managers.responseDispatcher.dispatch(res, {ok:true, code: httpStatusCode, data: rest});
                 }
             }
         }});
