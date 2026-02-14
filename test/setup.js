@@ -7,10 +7,7 @@ const ManagersLoader = require('../loaders/ManagersLoader');
 
 async function createTestApp() {
     try {
-        // Connect to MongoDB first
-        console.log('Connecting to MongoDB:', config.dotEnv.MONGO_URI);
         await mongoose.connect(config.dotEnv.MONGO_URI);
-        console.log('MongoDB connected successfully');
 
         // Initialize cache properly
         const cacheFactory = require('../cache/cache.dbh.js');
@@ -22,7 +19,6 @@ async function createTestApp() {
         // Wait for Redis initialization
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        // Mock other services safely
         let cortex, oyster, aeon;
 
         try {
@@ -82,7 +78,6 @@ async function createTestApp() {
 
         const managers = managersLoader.load();
 
-        // Attach mongomodels from loader to managers for test usage
         managers.mongomodels = managersLoader.mongomodels;
 
         // Verify managers loaded correctly
@@ -113,7 +108,6 @@ async function createTestApp() {
     }
 }
 
-// Create test environment with only admin and superadmin users
 async function createTestEnvironment(managers) {
     const testEnv = {
         schools: [],
@@ -122,7 +116,6 @@ async function createTestEnvironment(managers) {
     };
 
     try {
-        console.log('Creating test users and schools...');
 
         const bcrypt = require('bcrypt');
 
@@ -242,16 +235,12 @@ async function getAuthTokens(app, credentials) {
             .send(credentials);
 
         if (loginResponse.status !== 200) {
-            console.error('Login failed for:', credentials.username);
-            console.error('Response:', loginResponse.body);
             throw new Error(`Login failed: ${JSON.stringify(loginResponse.body)}`);
         }
 
         const { longToken, user } = loginResponse.body?.data || {};
 
         if (!longToken) {
-            console.error('Login did not return longToken for:', credentials.username);
-            console.error('Full response:', loginResponse.body);
             throw new Error('Missing longToken in login response');
         }
 
@@ -262,16 +251,12 @@ async function getAuthTokens(app, credentials) {
             .set('user-agent', 'test-agent');
 
         if (tokenResponse.status !== 200) {
-            console.error('Token exchange failed for:', credentials.username);
-            console.error('Response:', tokenResponse.body);
             throw new Error(`Token exchange failed: ${JSON.stringify(tokenResponse.body)}`);
         }
 
         const { shortToken } = tokenResponse.body?.data || {};
 
         if (!shortToken) {
-            console.error('Short token not returned for:', credentials.username);
-            console.error('Full response:', tokenResponse.body);
             throw new Error('Missing shortToken in token exchange response');
         }
 
@@ -282,8 +267,6 @@ async function getAuthTokens(app, credentials) {
         };
 
     } catch (error) {
-        console.error('Error getting auth tokens for:', credentials.username);
-        console.error('Error:', error.message);
         throw error;
     }
 }
@@ -298,11 +281,9 @@ async function setupAllUserTokens(app, testEnv) {
 
         // Get tokens for admin
         tokens.admin = await getAuthTokens(app, testEnv.credentials.admin);
-        console.log('Admin tokens obtained');
 
         // Get tokens for admin2
         tokens.admin2 = await getAuthTokens(app, testEnv.credentials.admin2);
-        console.log('Admin2 tokens obtained');
 
         return tokens;
 

@@ -9,7 +9,7 @@ module.exports = {
      * @swagger
      * /api/student/enrollStudent:
      *   post:
-     *     summary: Enroll a new student in a school
+     *     summary: Enroll a new student in a school (Admin & SuperAdmin)
      *     description: |
      *       Enrolls a new student in the admin's school. The admin must have access to the specified school.
      *       If a classroomId is provided, the classroom must belong to the same school.
@@ -59,7 +59,7 @@ module.exports = {
      * @swagger
      * /api/student/getStudents:
      *   get:
-     *     summary: Get list of students
+     *     summary: Get list of students (Admin & SuperAdmin)
      *     description: |
      *       Retrieve a paginated list of students for the admin's school with optional filtering 
      *       by enrollment status, classroom, and search functionality.
@@ -161,7 +161,7 @@ module.exports = {
      * @swagger
      * /api/student/getStudentById:
      *   get:
-     *     summary: Get student by ID
+     *     summary: Get student by ID (Admin & SuperAdmin)
      *     description: |
      *       Retrieve detailed information about a specific student, including populated school 
      *       and classroom information, and transfer history.
@@ -255,7 +255,7 @@ module.exports = {
      * @swagger
      * /api/student/updateStudent:
      *   patch:
-     *     summary: Update student information
+     *     summary: Update student information (Admin & SuperAdmin)
      *     description: |
      *       Update a student's basic information (firstName, lastName, dateOfBirth).
      *       Prevents duplicate students based on name and date of birth combination.
@@ -337,7 +337,7 @@ module.exports = {
      * @swagger
      * /api/student/deleteStudent:
      *   delete:
-     *     summary: Delete a student
+     *     summary: Delete a student (Admin & SuperAdmin)
      *     description: |
      *       Permanently delete a student from the system. This action cannot be undone.
      *       Only students belonging to admin's school can be deleted.
@@ -393,7 +393,7 @@ module.exports = {
      * @swagger
      * /api/student/transferStudent:
      *   patch:
-     *     summary: Transfer student to a different classroom
+     *     summary: Transfer student to a different classroom (Admin & SuperAdmin)
      *     description: |
      *       Transfer a student from one classroom to another within the same school.
      *       Creates a transfer history record and updates enrollment status if applicable.
@@ -506,7 +506,7 @@ module.exports = {
      * @swagger
      * /api/student/updateEnrollmentStatus:
      *   patch:
-     *     summary: Update student enrollment status
+     *     summary: Update student enrollment status (Admin & SuperAdmin)
      *     description: |
      *       Update a student's enrollment status. When status is changed to 'graduated',
      *       the student is automatically removed from their current classroom.
@@ -598,7 +598,7 @@ module.exports = {
      * @swagger
      * /api/student/getTransferHistory:
      *   get:
-     *     summary: Get student transfer history
+     *     summary: Get student transfer history (Admin & SuperAdmin)
      *     description: |
      *       Retrieve the complete transfer history for a specific student,
      *       showing all classroom transfers with populated classroom information.

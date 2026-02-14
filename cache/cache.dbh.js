@@ -17,8 +17,8 @@ module.exports = ({ prefix, url}) => {
         prefix, url
     });
 
-
     return {
+        redisClient,
         search: {
             /**
              * 

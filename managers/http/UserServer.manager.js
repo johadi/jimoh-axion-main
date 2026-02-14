@@ -4,12 +4,15 @@ const cors              = require('cors');
 const swaggerUi = require('swagger-ui-express');
 
 const swaggerSpec = require('../../docs/swagger');
+const rateLimitMw = require('../../mws/__rateLimit.mw');
 const app               = express();
 
 module.exports = class UserServer {
-    constructor({config, managers}){
+    constructor({config, managers, cache}){
         this.config        = config;
         this.userApi       = managers.userApi;
+        this.cache         = cache;
+        this.responseDispatcher = managers.responseDispatcher;
     }
     
     /** for injecting middlewares */
@@ -31,7 +34,9 @@ module.exports = class UserServer {
             console.error(err.stack)
             res.status(500).send('Something broke!')
         });
-        
+
+        // adds rate limiter
+        app.use('/api', rateLimitMw({ cache: this.cache, config: this.config, responseDispatcher: this.responseDispatcher }));
         /** a single middleware to handle all */
         app.all('/api/:moduleName/:fnName', this.userApi.mw);
 

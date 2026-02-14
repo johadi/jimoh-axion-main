@@ -9,10 +9,10 @@ module.exports = {
      * @swagger
      * /api/classroom/createClassroom:
      *   post:
-     *     summary: Create a new classroom (Admin only)
+     *     summary: Create a new classroom (Admin & SuperAdmin)
      *     description: |
      *       Creates a new classroom within the admin's assigned school.
-     *       Classroom names must be unique within the school. Only accessible by Admin users.
+     *       Classroom names must be unique within the school. Only accessible by Admin & SuperAdmin users.
      *       The classroom is automatically linked to the admin's school.
      *     tags: [Classrooms]
      *     security:
@@ -47,7 +47,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can create classrooms
+     *         description: Forbidden - only Admin & SuperAdmin can create classrooms
      *       404:
      *         description: School not found
      *       409:
@@ -62,10 +62,10 @@ module.exports = {
      * @swagger
      * /api/classroom/getClassrooms:
      *   get:
-     *     summary: Get all classrooms with pagination and search (Admin only)
+     *     summary: Get all classrooms with pagination and search (Admin & SuperAdmin)
      *     description: |
      *       Retrieves a paginated list of all classrooms in the admin's assigned school.
-     *       Search is performed across classroom names and resources. Only accessible by Admin users.
+     *       Search is performed across classroom names and resources. Only accessible by Admin & SuperAdmin users.
      *       Results include pagination information and school details.
      *     tags: [Classrooms]
      *     security:
@@ -119,7 +119,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can view classrooms
+     *         description: Forbidden - only Admin & SuperAdmin can view classrooms
      *       500:
      *         description: Internal server error
      */
@@ -130,10 +130,10 @@ module.exports = {
      * @swagger
      * /api/classroom/getClassroomById:
      *   get:
-     *     summary: Get classroom by ID with student count (Admin only)
+     *     summary: Get classroom by ID with student count (Admin & SuperAdmin)
      *     description: |
      *       Retrieves detailed information about a specific classroom by its ID.
-     *       Includes school information and current student count. Only accessible by Admin users.
+     *       Includes school information and current student count. Only accessible by Admin & SuperAdmin users.
      *       Admin can only access classrooms within their assigned school.
      *     tags: [Classrooms]
      *     security:
@@ -171,7 +171,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can view classroom details
+     *         description: Forbidden - only Admin & SuperAdmin can view classroom details
      *       404:
      *         description: Classroom not found or access denied
      *       500:
@@ -184,10 +184,10 @@ module.exports = {
      * @swagger
      * /api/classroom/updateClassroom:
      *   patch:
-     *     summary: Update classroom information (Admin only)
+     *     summary: Update classroom information (Admin & SuperAdmin)
      *     description: |
      *       Updates an existing classroom's information including name and capacity.
-     *       Classroom names must remain unique within the school. Only accessible by Admin users.
+     *       Classroom names must remain unique within the school. Only accessible by Admin & SuperAdmin users.
      *       Only provided fields will be updated (partial updates supported).
      *     tags: [Classrooms]
      *     security:
@@ -234,7 +234,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can update classrooms
+     *         description: Forbidden - only Admin & SuperAdmin can update classrooms
      *       404:
      *         description: Classroom not found or access denied
      *       409:
@@ -249,12 +249,12 @@ module.exports = {
      * @swagger
      * /api/classroom/deleteClassroom:
      *   delete:
-     *     summary: Delete classroom and cleanup associations (Admin only)
+     *     summary: Delete classroom and cleanup associations (Admin & SuperAdmin)
      *     description: |
      *       Permanently deletes a classroom and performs cleanup:
      *       - Unassigns all students from this classroom
      *       - Deletes the classroom record permanently
-     *       Only accessible by Admin users. This action cannot be undone.
+     *       Only accessible by Admin & SuperAdmin users. This action cannot be undone.
      *       Admin can only delete classrooms within their assigned school.
      *     tags: [Classrooms]
      *     security:
@@ -300,7 +300,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can delete classrooms
+     *         description: Forbidden - only Admin & SuperAdmin can delete classrooms
      *       404:
      *         description: Classroom not found or access denied
      *       500:
@@ -313,11 +313,11 @@ module.exports = {
      * @swagger
      * /api/classroom/addResources:
      *   post:
-     *     summary: Add resources to classroom (Admin only)
+     *     summary: Add resources to classroom (Admin & SuperAdmin)
      *     description: |
      *       Adds new resources to an existing classroom without affecting existing resources.
      *       Resources are automatically sanitized, deduplicated, and converted to lowercase.
-     *       Only accessible by Admin users within their assigned school.
+     *       Only accessible by Admin & SuperAdmin users within their assigned school.
      *     tags: [Classrooms]
      *     security:
      *       - BearerAuth: []
@@ -368,7 +368,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can manage classroom resources
+     *         description: Forbidden - only Admin & SuperAdmin can manage classroom resources
      *       404:
      *         description: Classroom not found or access denied
      *       500:
@@ -381,11 +381,11 @@ module.exports = {
      * @swagger
      * /api/classroom/removeResources:
      *   delete:
-     *     summary: Remove resources from classroom (Admin only)
+     *     summary: Remove resources from classroom (Admin & SuperAdmin)
      *     description: |
      *       Removes specified resources from an existing classroom.
      *       Resources are automatically sanitized and converted to lowercase for matching.
-     *       Only accessible by Admin users within their assigned school.
+     *       Only accessible by Admin & SuperAdmin users within their assigned school.
      *     tags: [Classrooms]
      *     security:
      *       - BearerAuth: []
@@ -436,7 +436,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can manage classroom resources
+     *         description: Forbidden - only Admin & SuperAdmin can manage classroom resources
      *       404:
      *         description: Classroom not found or access denied
      *       500:
@@ -449,12 +449,12 @@ module.exports = {
      * @swagger
      * /api/classroom/replaceResources:
      *   put:
-     *     summary: Replace all resources in classroom (Admin only)
+     *     summary: Replace all resources in classroom (Admin & SuperAdmin)
      *     description: |
      *       Completely replaces all existing resources in a classroom with the provided list.
      *       Resources are automatically sanitized, deduplicated, and converted to lowercase.
      *       Providing an empty array will clear all resources from the classroom.
-     *       Only accessible by Admin users within their assigned school.
+     *       Only accessible by Admin & SuperAdmin users within their assigned school.
      *     tags: [Classrooms]
      *     security:
      *       - BearerAuth: []
@@ -505,7 +505,7 @@ module.exports = {
      *       401:
      *         description: Unauthorized - invalid or missing token
      *       403:
-     *         description: Forbidden - only Admin can manage classroom resources
+     *         description: Forbidden - only Admin & SuperAdmin can manage classroom resources
      *       404:
      *         description: Classroom not found or access denied
      *       500:

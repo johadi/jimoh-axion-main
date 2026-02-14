@@ -97,7 +97,6 @@ describe('Student Endpoints', () => {
                     schoolId: testEnv.schools[0]._id.toString() // Admin's assigned school
                 });
 
-            console.log('Admin response:', response.status);
             if (response.status !== 200) {
                 console.log('Admin error:', response.body);
             }
@@ -120,8 +119,6 @@ describe('Student Endpoints', () => {
                     schoolId: testEnv.schools[1]._id.toString() // Different school
                 });
 
-            console.log('Admin access denied response:', response.status, response.body);
-
             // Should be denied access (admin middleware should check school access)
             expect(response.status).to.equal(403);
             expect(response.body).to.have.property('ok', false);
@@ -140,7 +137,6 @@ describe('Student Endpoints', () => {
                     schoolId: testEnv.schools[0]._id.toString()
                 });
 
-            console.log('Superadmin response school1:', response1.status);
             expect(response1.status).to.equal(200);
             expect(response1.body).to.have.property('ok', true);
 
@@ -170,8 +166,6 @@ describe('Student Endpoints', () => {
                     limit: 10,
                     schoolId: testEnv.schools[1]._id.toString() // Admin2's assigned school
                 });
-
-            console.log('Admin2 response:', response.status);
 
             expect(response.status).to.equal(200);
             expect(response.body).to.have.property('ok', true);

@@ -78,7 +78,7 @@ module.exports = class ManagersLoader {
         /*************************************************************************************************/
         this.managers.mwsExec             = new VirtualStack({ ...{ preStack: [/* '__token', */'__device',] }, ...this.injectable });
         this.managers.userApi             = new ApiHandler({...this.injectable,...{prop:'httpExposed'}});
-        this.managers.userServer          = new UserServer({ config: this.config, managers: this.managers });
+        this.managers.userServer          = new UserServer({ config: this.config, managers: this.managers, cache: this.cache });
 
        
         return this.managers;
