@@ -1,5 +1,6 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 const path = require('path');
+const config = require('../config/index.config');
 
 const options = {
     definition: {
@@ -15,12 +16,8 @@ const options = {
         },
         servers: [
             {
-                url: 'http://localhost:5111',
-                description: 'Development server (User API)',
-            },
-            {
-                url: 'http://localhost:5222',
-                description: 'Development server (Admin API)',
+                url:  config.dotEnv.API_BASE_URL ?? 'http://localhost:5222',
+                description: 'API Base Url',
             },
         ],
         components: {

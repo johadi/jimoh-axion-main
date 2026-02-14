@@ -22,6 +22,7 @@ const CACHE_PREFIX                     = process.env.CACHE_PREFIX || `${SERVICE_
 const MONGO_URI                        = process.env.MONGO_URI || `mongodb://localhost:27017/${SERVICE_NAME}`;
 const TEST_MONGO_URI = process.env.TEST_MONGO_URI || `mongodb://localhost:27017/${SERVICE_NAME}_test`;
 const DATABASE_URI = process.env.NODE_ENV === 'test' ? TEST_MONGO_URI : MONGO_URI;
+const API_BASE_URL = process.env.API_BASE_URL;
 
 const config                           = require(`./envs/${ENV}.js`);
 const LONG_TOKEN_SECRET                = process.env.LONG_TOKEN_SECRET || null;
@@ -49,7 +50,8 @@ config.dotEnv = {
     ADMIN_URL,
     LONG_TOKEN_SECRET,
     SHORT_TOKEN_SECRET,
-    RESET_PASSWORD_TOKEN_SECRET
+    RESET_PASSWORD_TOKEN_SECRET,
+    API_BASE_URL
 };
 
 
