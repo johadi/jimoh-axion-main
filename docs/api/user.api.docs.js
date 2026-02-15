@@ -68,7 +68,6 @@ module.exports = {
      *     description: |
      *       Authenticate user with username and password. Returns user information 
      *       and a long token that can be used to generate short tokens for API access.
-     *       Passwords are verified against hashed values stored in the database.
      *     tags: [Users]
      *     requestBody:
      *       required: true
@@ -170,7 +169,7 @@ module.exports = {
      *     summary: Reset user password
      *     description: |
      *       Reset user password using a valid reset token. The token must be valid
-     *       and not expired. The new password will be hashed and stored securely.
+     *       and not expired.
      *     tags: [Users]
      *     security:
      *       - ResetPasswordAuth: []
@@ -301,7 +300,7 @@ module.exports = {
      *     summary: Update user role (SuperAdmin only)
      *     description: |
      *       Update the role of an existing user account. SuperAdmin users cannot change 
-     *       their own role for security reasons. Only accessible by SuperAdmin users.
+     *       their own role. Only accessible by SuperAdmin users.
      *     tags: [Users]
      *     security:
      *       - BearerAuth: []
