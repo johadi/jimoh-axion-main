@@ -410,11 +410,11 @@ module.exports = {
      *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *           pattern: "^[0-9a-fA-F]{24}$"
-     *         description: ID of the classroom to update
+     *         description: ID of the classroom to update. Can be provided in query or request body
      *         example: "64f1c8e8f1a2a3c4d5e6f789"
      *     requestBody:
      *       required: true
@@ -487,11 +487,11 @@ module.exports = {
      *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *           pattern: "^[0-9a-fA-F]{24}$"
-     *         description: ID of the classroom to delete
+     *         description: ID of the classroom to delete. Can be provided in query or request body
      *         example: "64f1c8e8f1a2a3c4d5e6f789"
      *     responses:
      *       200:
@@ -559,11 +559,11 @@ module.exports = {
      *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *           pattern: "^[0-9a-fA-F]{24}$"
-     *         description: ID of the classroom to add resources to
+     *         description: ID of the classroom to add resources to. Can be provided in query or request body
      *         example: "64f1c8e8f1a2a3c4d5e6f789"
      *     requestBody:
      *       required: true
@@ -637,11 +637,11 @@ module.exports = {
      *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *           pattern: "^[0-9a-fA-F]{24}$"
-     *         description: ID of the classroom to remove resources from
+     *         description: ID of the classroom to remove resources from. Can be provided in query or request body
      *         example: "64f1c8e8f1a2a3c4d5e6f789"
      *     requestBody:
      *       required: true
@@ -773,11 +773,11 @@ module.exports = {
      *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *           pattern: "^[0-9a-fA-F]{24}$"
-     *         description: ID of the classroom to replace resources in
+     *         description: ID of the classroom to replace resources in. Can be provided in query or request body
      *         example: "64f1c8e8f1a2a3c4d5e6f789"
      *     requestBody:
      *       required: true

@@ -208,11 +208,11 @@ module.exports = {
      *         description: Short-lived JWT token. Use the value in the 'token' header
      *       - in: query
      *         name: schoolId
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *           pattern: "^[0-9a-fA-F]{24}$"
-     *         description: ID of the school to update
+     *         description: ID of the school to update. Can be provided in query or request body
      *         example: "64f1c8e8f1a2a3b1c2d3e456"
      *     requestBody:
      *       required: true
@@ -278,11 +278,11 @@ module.exports = {
      *         description: Short-lived JWT token. Use the value in the 'token' header
      *       - in: query
      *         name: schoolId
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *           pattern: "^[0-9a-fA-F]{24}$"
-     *         description: ID of the school to delete
+     *         description: ID of the school to delete. Can be provided in query or request body
      *         example: "64f1c8e8f1a2a3b1c2d3e456"
      *     responses:
      *       200:
