@@ -20,7 +20,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
@@ -82,7 +82,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
@@ -194,7 +194,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
@@ -298,7 +298,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
@@ -390,7 +390,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
@@ -457,7 +457,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
@@ -579,7 +579,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
@@ -681,7 +681,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: true
+     *         required: false
      *         schema:
      *           type: string
      *         description: Short-lived JWT token. Use the value in the 'token' header
