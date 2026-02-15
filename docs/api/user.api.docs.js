@@ -173,6 +173,13 @@ module.exports = {
      *     tags: [Users]
      *     security:
      *       - ResetPasswordAuth: []
+     *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Reset Password JWT token obtained from requestPasswordReset. Can be in the request query or body
      *     requestBody:
      *       required: true
      *       content:
