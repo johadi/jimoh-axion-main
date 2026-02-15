@@ -18,6 +18,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
      *         required: false
@@ -67,6 +80,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: true
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. SuperAdmin can use any schoolId.
      *       - in: query
      *         name: page
      *         required: false
@@ -120,9 +146,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -169,6 +192,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: true
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. SuperAdmin can use any schoolId.
      *       - in: query
      *         name: studentId
      *         required: true
@@ -188,9 +224,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -263,6 +296,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: studentId
      *         required: true
@@ -306,9 +352,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -345,6 +388,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: studentId
      *         required: true
@@ -364,9 +420,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -402,6 +455,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: studentId
      *         required: true
@@ -441,9 +507,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -514,6 +577,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: studentId
      *         required: true
@@ -547,9 +623,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -606,6 +679,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: true
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. SuperAdmin can use any schoolId.
      *       - in: query
      *         name: studentId
      *         required: true
@@ -625,9 +711,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:

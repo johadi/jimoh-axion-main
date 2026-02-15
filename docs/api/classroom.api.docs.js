@@ -17,6 +17,20 @@ module.exports = {
      *     tags: [Classrooms]
      *     security:
      *       - BearerAuth: []
+     *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *     requestBody:
      *       required: true
      *       content:
@@ -34,9 +48,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 201
      *                 data:
      *                   type: object
      *                   properties:
@@ -44,16 +55,84 @@ module.exports = {
      *                       $ref: '#/components/schemas/ClassroomWithSchool'
      *       400:
      *         description: Bad request - validation errors
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 errors:
+     *                   type: array
+     *                   items:
+     *                     type: string
+     *                   example: ["validation_error"]
      *       401:
      *         description: Unauthorized - invalid or missing token
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "unauthorized"
      *       403:
      *         description: Forbidden - only Admin & SuperAdmin can create classrooms
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "forbidden"
      *       404:
      *         description: School not found
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "not_found"
      *       409:
      *         description: Classroom with this name already exists in this school
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "conflict"
      *       500:
      *         description: Internal server error
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "Internal server error"
      */
   },
 
@@ -71,6 +150,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: true
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. SuperAdmin can use any schoolId.
      *       - in: query
      *         name: page
      *         schema:
@@ -102,9 +194,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -116,12 +205,58 @@ module.exports = {
      *                       $ref: '#/components/schemas/PaginationInfo'
      *       400:
      *         description: Bad request - validation errors
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 errors:
+     *                   type: array
+     *                   items:
+     *                     type: string
+     *                   example: ["validation_error"]
      *       401:
      *         description: Unauthorized - invalid or missing token
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "unauthorized"
      *       403:
      *         description: Forbidden - only Admin & SuperAdmin can view classrooms
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "forbidden"
      *       500:
      *         description: Internal server error
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "Internal server error"
      */
   },
 
@@ -139,6 +274,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: true
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. SuperAdmin can use any schoolId.
      *       - in: query
      *         name: classroomId
      *         required: true
@@ -158,9 +306,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -168,14 +313,71 @@ module.exports = {
      *                       $ref: '#/components/schemas/ClassroomWithSchoolAndCount'
      *       400:
      *         description: Bad request - invalid classroom ID format
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 errors:
+     *                   type: array
+     *                   items:
+     *                     type: string
+     *                   example: ["validation_error"]
      *       401:
      *         description: Unauthorized - invalid or missing token
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "unauthorized"
      *       403:
      *         description: Forbidden - only Admin & SuperAdmin can view classroom details
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "forbidden"
      *       404:
      *         description: Classroom not found or access denied
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "not_found"
      *       500:
      *         description: Internal server error
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "Internal server error"
      */
   },
 
@@ -193,6 +395,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
      *         required: true
@@ -218,9 +433,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -260,6 +472,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
      *         required: true
@@ -279,9 +504,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -322,6 +544,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
      *         required: true
@@ -347,9 +582,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -390,6 +622,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
      *         required: true
@@ -415,9 +660,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -433,14 +675,71 @@ module.exports = {
      *                       example: ["old_projector", "broken_computer"]
      *       400:
      *         description: Bad request - validation errors
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 errors:
+     *                   type: array
+     *                   items:
+     *                     type: string
+     *                   example: ["validation_error"]
      *       401:
      *         description: Unauthorized - invalid or missing token
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "unauthorized"
      *       403:
      *         description: Forbidden - only Admin & SuperAdmin can manage classroom resources
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "forbidden"
      *       404:
      *         description: Classroom not found or access denied
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "not_found"
      *       500:
      *         description: Internal server error
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 ok:
+     *                   type: boolean
+     *                   example: false
+     *                 message:
+     *                   type: string
+     *                   example: "Internal server error"
      */
   },
 
@@ -459,6 +758,19 @@ module.exports = {
      *     security:
      *       - BearerAuth: []
      *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
+     *       - in: query
+     *         name: schoolId
+     *         required: false
+     *         schema:
+     *           type: string
+     *           pattern: "^[0-9a-fA-F]{24}$"
+     *         description: School ID for admin context. Required for Admin. Can be provided in query or request body.
      *       - in: query
      *         name: classroomId
      *         required: true
@@ -484,9 +796,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:

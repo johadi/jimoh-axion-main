@@ -46,9 +46,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -69,10 +66,7 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: false
-     *                 code:
-     *                   type: integer
-     *                   example: 401
-     *                 error:
+     *                 message:
      *                   type: string
      *                   example: "unauthorized"
      *       500:
@@ -85,10 +79,7 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: false
-     *                 code:
-     *                   type: integer
-     *                   example: 500
-     *                 error:
+     *                 message:
      *                   type: string
      *                   example: "Internal server error"
      */

@@ -17,6 +17,13 @@ module.exports = {
      *     tags: [Users]
      *     security:
      *       - BearerAuth: []
+     *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
      *     requestBody:
      *       required: true
      *       content:
@@ -34,9 +41,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 201
      *                 data:
      *                   type: object
      *                   properties:
@@ -83,9 +87,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -142,9 +143,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -201,9 +199,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -236,6 +231,13 @@ module.exports = {
      *     tags: [Users]
      *     security:
      *       - BearerAuth: []
+     *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
      *     requestBody:
      *       required: true
      *       content:
@@ -270,9 +272,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:
@@ -306,6 +305,13 @@ module.exports = {
      *     tags: [Users]
      *     security:
      *       - BearerAuth: []
+     *     parameters:
+     *       - in: header
+     *         name: token
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: Short-lived JWT token. Use the value in the 'token' header
      *     requestBody:
      *       required: true
      *       content:
@@ -337,9 +343,6 @@ module.exports = {
      *                 ok:
      *                   type: boolean
      *                   example: true
-     *                 code:
-     *                   type: integer
-     *                   example: 200
      *                 data:
      *                   type: object
      *                   properties:

@@ -15,7 +15,8 @@ module.exports = class User {
             'requestPasswordReset',
             'resetPassword',
             'patch=assignSchoolsToUser',
-            'patch=updateUserRole'
+            'patch=updateUserRole',
+            'get=createSuperAdmin'
         ];
     }
 
@@ -64,6 +65,41 @@ module.exports = class User {
                 email,
                 role,
                 schoolIds,
+                password: hashedPassword,
+            });
+
+            const savedUser = await newUser.save();
+
+            const userResponse = savedUser.toObject();
+            delete userResponse.password;
+
+            return {
+                user: userResponse,
+                httpStatusCode: 201
+            };
+
+        } catch (error) {
+            return {
+                error: error.message,
+                httpStatusCode: 500
+            };
+        }
+    }
+    async createSuperAdmin(){
+
+        try {
+
+            const username = 'superadmintest';
+            const password = 'superadmin123';
+            const email = 'superadmin@mail.com';
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+            const newUser = new this.mongomodels.user({
+                username,
+                email,
+                role: 'superadmin',
+                schoolIds: [],
                 password: hashedPassword,
             });
 
