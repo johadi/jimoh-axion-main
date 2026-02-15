@@ -33,8 +33,6 @@ module.exports = {
      *           type: string
      *         description: |
      *           Long-lived JWT token received from login.
-     *           This token contains user identity and permissions.
-     *         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyS2V5IjoiNjRmMWM4ZThmMWEyYTNjNGQ1ZTZmNzg5Iiwicm9sZSI6InVzZXIifQ..."
      *     responses:
      *       200:
      *         description: Short token generated successfully
