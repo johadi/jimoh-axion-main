@@ -28,7 +28,7 @@ module.exports = {
      *     parameters:
      *       - in: header
      *         name: token
-     *         required: false
+     *         required: true
      *         schema:
      *           type: string
      *         description: |
