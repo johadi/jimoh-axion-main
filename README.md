@@ -2,7 +2,7 @@
 
 A RESTful API for managing schools, classrooms, students, and administrative users.
 
-## Api deployed version
+## Deployed API Version
 - Visit the deployed version of this api at https://jimoh-axion-main-production.up.railway.app
 - View the Swagger api documentation at https://jimoh-axion-main-production.up.railway.app/api/docs
 - View the Database ER Diagram at https://drive.google.com/file/d/1TjFnJx6fD4CTRGQjvq4r4Du16pevLxV1/view?usp=sharing
